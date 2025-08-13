@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de JavaScript</title>
+    <script>
+        function fatorial(num) {
+            if (num === 0 || num === 1) // Se numero == 1 ou 0, retorna ele mesmo
+                return 1;
+            for (var i = num - 1; i >= 1; i--) { // Inicia o for decrementando o valor inicial, e vai diminuindo até o final
+                num *= i; // e vai somando o valor
+            }
+            return num; // retorna o valor
+        }
+        
+        let numero;
+        numero = Number(prompt("Digite um número inteiro positivo: "));
+        if (Number.isInteger(numero) && numero > 0){
+            var resultado = fatorial(numero);
+            window.alert("O resultado do fatorial do numero " + numero+ " é "+resultado+".");
+        }
+    </script>
+</head>
+<body>
+    <h1>Exercício 3</h1>
+
+    <a href="semana01.html">Voltar</a>
+</body>
+</html>

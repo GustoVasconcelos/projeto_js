@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de JavaScript</title>
+    <script>
+        function verificarTipoDeDados(entrada) {
+            // 1. Verifica se é um número
+            // O 'trim()' remove espaços em branco antes de verificar
+            if (!isNaN(Number(entrada)) && entrada.trim() !== '') {
+                // Para ser mais preciso, podemos verificar se é um número inteiro ou decimal
+                if (entrada.includes('.') || entrada.includes(',')) {
+                    return 'número (decimal)';
+                } else {
+                    return 'número (inteiro)';
+                }
+            }
+
+            // 2. Verifica se é um booleano (true ou false)
+            // Converte a entrada para letras minúsculas para não diferenciar maiúsculas/minúsculas
+            const entradaMinuscula = entrada.toLowerCase().trim();
+            if (entradaMinuscula === 'true' || entradaMinuscula === 'false') {
+                return 'booleano';
+            }
+
+            // 3. Verifica se é uma string vazia ou nula
+            if (entrada === null || entrada.trim() === '') {
+                return 'vazio ou nulo';
+        }
+
+        // Se não se encaixar em nenhum dos casos acima, é uma string
+        return 'string';
+        }
+        
+        let numero;
+        numero = Number(prompt("Digite um número inteiro positivo: "));
+        if (Number.isInteger(numero) && numero > 0){
+            var resultado = fatorial(numero);
+            window.alert("O resultado do fatorial do numero " + numero+ " é "+resultado+".");
+        }
+    </script>
+</head>
+<body>
+    <h1>Exercício 4</h1>
+
+    <a href="semana01.html">Voltar</a>
+</body>
+</html>
