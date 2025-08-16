@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades de JavaScript</title>
+    
+</head>
+<body>
+    <h1>Exercício 4</h1>
+    <div id="resultado"></div>
+    <a href="semana01.html">Voltar</a>
+
     <script>
         function verificarTipoDeDados(entrada) {
             // 1. Verifica se é um número
@@ -27,23 +34,25 @@
             // 3. Verifica se é uma string vazia ou nula
             if (entrada === null || entrada.trim() === '') {
                 return 'vazio ou nulo';
-        }
+            }
 
-        // Se não se encaixar em nenhum dos casos acima, é uma string
-        return 'string';
+            // Se não se encaixar em nenhum dos casos acima, é uma string
+            return 'string';
         }
         
-        let numero;
-        numero = Number(prompt("Digite um número inteiro positivo: "));
-        if (Number.isInteger(numero) && numero > 0){
-            var resultado = fatorial(numero);
-            window.alert("O resultado do fatorial do numero " + numero+ " é "+resultado+".");
+        let entrada;
+        let confirmar;
+        entrada = prompt("Digite alguma coisa: ");
+        confirmar = String(prompt("Deseja verificar o tipo de dados que voce digitou? 'S' para sim e 'N' para nao"));
+        if (confirmar === "S"){
+            var resultado = document.getElementById('resultado');
+            resultado.innerHTML = "<h4>O tipo de dados digitado: " + verificarTipoDeDados(entrada) + "</h4>";
         }
+        else {
+            var resultado = document.getElementById('resultado');
+            resultado.innerHTML = "<h4>Obrigado por visitar esta pagina.</h4>";
+        }
+        
     </script>
-</head>
-<body>
-    <h1>Exercício 4</h1>
-
-    <a href="semana01.html">Voltar</a>
 </body>
 </html>
