@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de JavaScript</title>
+    <script>
+        function horarioAtual() {
+            let dataAtual = new Date(); //variável recebe a data atual
+            let hora = dataAtual.toLocaleTimeString(); // variável recebe a data atual convertida para hora atual
+            document.getElementById('horario').innerHTML = hora + "<br><br>";
+        }
+        setInterval(horarioAtual, 1000);
+    </script>
+</head>
+<body>
+    <h1>Exercício 2</h1>
+    <div id="horario"></div>
+    <a href="semana02.html">Voltar</a>
+</body>
+</html>

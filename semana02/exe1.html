@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de JavaScript</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('dia').innerHTML = " " + RetornaDiaSemana(diaSemana) + ", " + dia + " de " + RetornaMes(mes) + " de " + ano + " <br><br>";
+        });
+        
+        var data = new Date();
+        var diaSemana = data.getDay();
+        var dia = data.getDate();
+        var mes = data.getMonth();
+        var ano = data.getFullYear();
+
+        function RetornaDiaSemana(diaSemana){
+            switch(diaSemana){
+                case 0:
+                    return "Domingo";
+                    break;
+                case 1:
+                    return "Segunda";
+                    break;
+                case 2:
+                    return "Terça";
+                    break;
+                case 3:
+                    return "Quarta";
+                    break;
+                case 4:
+                    return "Quinta";
+                    break;
+                case 5:
+                    return "Sexta";
+                    break;
+                case 6:
+                    return "Sábado";
+                    break;
+            }
+        }
+
+        function RetornaMes(mes){
+            switch(mes){
+                case 0:
+                    return "janeiro";
+                    break;
+                case 1:
+                    return "fevereiro";
+                    break;
+                case 2:
+                    return "março";
+                    break;
+                case 3:
+                    return "abril";
+                    break;
+                case 4:
+                    return "maio";
+                    break;
+                case 5:
+                    return "junho";
+                    break;
+                case 6:
+                    return "julho";
+                    break;
+                case 7:
+                    return "agosto";
+                    break;
+                case 8:
+                    return "setembro";
+                    break;
+                case 9:
+                    return "outubro";
+                    break;
+                case 10:
+                    return "novembro";
+                    break;
+                case 11:
+                    return "dezembro";
+                    break;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Exercício 1</h1>
+    <div id="dia"></div>
+    <a href="semana02.html">Voltar</a>
+</body>
+</html>
