@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades de JavaScript</title>
     <script>
-        let numero;
-        numero = Number(prompt("Digite um número inteiro positivo: "));
-        if (Number.isInteger(numero) && numero > 0){
-            var resultado = numero % 2 == 0 ? 'Par.' : 'Impar.';
-            window.alert("Numero é : "+resultado);
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('exe1').addEventListener("click", iniciar_exe1);
+
+            function iniciar_exe1(){
+                let numero;
+                numero = Number(prompt("Digite um número inteiro positivo: "));
+                if (Number.isInteger(numero) && numero > 0){
+                    var resultado = numero % 2 == 0 ? 'Par.' : 'Impar.';
+                    window.alert("Numero é : "+resultado);
+                }
+            }
+        })
     </script>
 </head>
 <body>
     <h1>Exercício 1</h1>
-
+    <button id="exe1">Iniciar</button>
     <a href="semana01.html">Voltar</a>
 </body>
 </html>

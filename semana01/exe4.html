@@ -4,55 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades de JavaScript</title>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('exe4').addEventListener("click", iniciar_exe4);
+
+            function verificarTipoDeDados(entrada) {
+                // 1. Verifica se é um número
+                // O 'trim()' remove espaços em branco antes de verificar
+                if (!isNaN(Number(entrada)) && entrada.trim() !== '') {
+                    // Para ser mais preciso, podemos verificar se é um número inteiro ou decimal
+                    if (entrada.includes('.') || entrada.includes(',')) {
+                        return 'número (decimal)';
+                    } else {
+                        return 'número (inteiro)';
+                    }
+                }
+
+                // 2. Verifica se é um booleano (true ou false)
+                // Converte a entrada para letras minúsculas para não diferenciar maiúsculas/minúsculas
+                const entradaMinuscula = entrada.toLowerCase().trim();
+                if (entradaMinuscula === 'true' || entradaMinuscula === 'false') {
+                    return 'booleano';
+                }
+
+                // 3. Verifica se é uma string vazia ou nula
+                if (entrada === null || entrada.trim() === '') {
+                    return 'vazio ou nulo';
+                }
+
+                // Se não se encaixar em nenhum dos casos acima, é uma string
+                return 'string';
+            }
+            
+            function iniciar_exe4() {
+                let entrada;
+                let confirmar;
+                entrada = prompt("Digite alguma coisa: ");
+                confirmar = String(prompt("Deseja verificar o tipo de dados que voce digitou? 'S' para sim e 'N' para nao"));
+                if (confirmar === "S"){
+                    var resultado = document.getElementById('resultado');
+                    resultado.innerHTML = "<h4>O tipo de dados digitado: " + verificarTipoDeDados(entrada) + "</h4>";
+                }
+                else {
+                    var resultado = document.getElementById('resultado');
+                    resultado.innerHTML = "<h4>Obrigado por visitar esta pagina.</h4>";
+                }
+            }
+        })
+    </script>
 </head>
 <body>
     <h1>Exercício 4</h1>
+    <button id="exe4">Iniciar</button>
     <div id="resultado"></div>
     <a href="semana01.html">Voltar</a>
-
-    <script>
-        function verificarTipoDeDados(entrada) {
-            // 1. Verifica se é um número
-            // O 'trim()' remove espaços em branco antes de verificar
-            if (!isNaN(Number(entrada)) && entrada.trim() !== '') {
-                // Para ser mais preciso, podemos verificar se é um número inteiro ou decimal
-                if (entrada.includes('.') || entrada.includes(',')) {
-                    return 'número (decimal)';
-                } else {
-                    return 'número (inteiro)';
-                }
-            }
-
-            // 2. Verifica se é um booleano (true ou false)
-            // Converte a entrada para letras minúsculas para não diferenciar maiúsculas/minúsculas
-            const entradaMinuscula = entrada.toLowerCase().trim();
-            if (entradaMinuscula === 'true' || entradaMinuscula === 'false') {
-                return 'booleano';
-            }
-
-            // 3. Verifica se é uma string vazia ou nula
-            if (entrada === null || entrada.trim() === '') {
-                return 'vazio ou nulo';
-            }
-
-            // Se não se encaixar em nenhum dos casos acima, é uma string
-            return 'string';
-        }
-        
-        let entrada;
-        let confirmar;
-        entrada = prompt("Digite alguma coisa: ");
-        confirmar = String(prompt("Deseja verificar o tipo de dados que voce digitou? 'S' para sim e 'N' para nao"));
-        if (confirmar === "S"){
-            var resultado = document.getElementById('resultado');
-            resultado.innerHTML = "<h4>O tipo de dados digitado: " + verificarTipoDeDados(entrada) + "</h4>";
-        }
-        else {
-            var resultado = document.getElementById('resultado');
-            resultado.innerHTML = "<h4>Obrigado por visitar esta pagina.</h4>";
-        }
-        
-    </script>
 </body>
 </html>
