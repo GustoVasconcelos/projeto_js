@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades de JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous" defer></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('exe2').addEventListener("click", iniciar_exe2);
@@ -30,8 +35,13 @@
     </script>
 </head>
 <body>
-    <h1>Exercício 2</h1>
-    <button id="exe2">Iniciar</button>
-    <a href="semana01.html">Voltar</a>
+    <div class="container d-flex flex-column align-items-center mt-2">
+        <h1>Exercício 2</h1>
+        <div class="p-3 bg-transparent bg-opacity-10 border border-info rounded mt-2">
+            <p class="container-exercicio">Implemente um script JavaScript que solicite ao usuário um número inteiro positivo. Assim que o usuário digitar um valor válido informe em uma janela de alerta se o número é ou não primo.</p>
+            <button class="btn btn-secondary" id="exe2">Iniciar</button>
+            <a class="btn btn-secondary" href="semana01.html">Voltar</a>
+        </div>
+    </div>
 </body>
 </html>

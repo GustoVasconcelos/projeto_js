@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous" defer></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('exe3').addEventListener("click",verificarPalindromo);
+        });
+
+        function verificarPalindromo() {
+            // Obter o valor do campo de texto
+            const input = document.getElementById('textoInput');
+            const texto = input.value;
+            
+            // Verificar se o campo está vazio
+            if (texto.trim() === '') {
+                alert('Por favor, digite uma palavra ou frase.');
+                return;
+            }
+            
+            // Remover espaços, acentos e converter para minúsculas
+            let textoLimpo = '';
+            for (let i = 0; i < texto.length; i++) {
+                const char = texto[i].toLowerCase();
+                
+                // Ignorar espaços e pontuação
+                if (char >= 'a' && char <= 'z') {
+                    textoLimpo += char;
+                }
+            }
+            
+            // Verificar se é palíndromo
+            let ehPalindromo = true;
+            const tamanho = textoLimpo.length;
+            
+            for (let i = 0; i < Math.floor(tamanho / 2); i++) {
+                if (textoLimpo[i] !== textoLimpo[tamanho - 1 - i]) {
+                    ehPalindromo = false;
+                    break;
+                }
+            }
+            
+            // Exibir resultado
+            if (ehPalindromo) {
+                alert(`"${texto}" É UM PALÍNDROMO!`);
+            } else {
+                alert(`"${texto}" NÃO é um palíndromo.`);
+            }
+
+            input.value = "";
+            input.focus();
+        }        
+    </script>
+</head>
+<body>
+    <div class="container d-flex flex-column align-items-center mt-2">
+        <h1>Exercício 3</h1>
+        <div class="p-3 bg-transparent bg-opacity-10 border border-info rounded mt-2">
+            <p class="container-exercicio">Implemente um script que leia uma palavra ou frase de um campo de texto e exiba em uma janela de alert se o texto é ou não um palíndromo.</p>
+            <input class="form-control mb-3" type="text" id="textoInput" placeholder="Digite uma palavra ou frase">
+            <button class="btn btn-secondary" id="exe3">Verificar</button>
+            <a class="btn btn-secondary" href="semana02.html">Voltar</a>
+        </div>
+    </div>
+</body>
+</html>
