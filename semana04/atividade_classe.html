@@ -78,16 +78,21 @@
             const divProfessor = document.getElementById('divProfessor');
             const divAluno = document.getElementById('divAluno');
             const divLattes = document.getElementById('divLattes');
+            const inputMatricula = document.getElementById('matriculaInput');
 
             function exibirInputCorreto() {
                 if (tipoPessoaRadioProfessor.checked) {
                     divProfessor.style.display = 'block';
                     divLattes.style.display = 'block';
                     divAluno.style.display = 'none';
+                    inputMatricula.value = '';
+                    inputMatricula.maxLength = 5;
                 } else if (tipoPessoaRadioAluno.checked) {
                     divProfessor.style.display = 'none';
                     divLattes.style.display = 'none';
                     divAluno.style.display = 'block';
+                    inputMatricula.value = '';
+                    inputMatricula.maxLength = 10;
                 }
             }
 
@@ -122,9 +127,9 @@
                             <li>- Email: xxx@xxx.xxx</li>
                             <li>- Data Nascimento: dd/mm/aaaa</li>
                             <li>- Telefone Fixo: (xx)xxxx-xxxx preencher os parênteses e traço automaticamente na digitação</li>
-                            <li>Telefone Celular: (xx)xxxx-xxxx preencher os parênteses e traço automaticamente na digitação</li>
-                            <li>Curso, Área de Atuação e Curso: obrigatórios para respectivos perfis</li>
-                            <li>Matrícula professor: 5 dígitos / Matrícula aluno: 10 dígitos
+                            <li>- Telefone Celular: (xx)xxxx-xxxx preencher os parênteses e traço automaticamente na digitação</li>
+                            <li>- Curso, Área de Atuação e Curso: obrigatórios para respectivos perfis</li>
+                            <li>- Matrícula professor: 5 dígitos / Matrícula aluno: 10 dígitos
                             </li>
                         </ul>
                         <p class="mt-3">Todos os dados preenchidos devem ser armazenados em um bjeto da classe Aluno/Professor que herdam dados da classe Pessoa.
@@ -154,15 +159,15 @@
                         </div>
                     </div>
                     <div class="d-flex flex-row mt-3">
-                        <div>
+                        <div class="flex-fill">
                             <label class="form-label" for="telefoneFixoInput">Telefone Fixo</label>
-                            <input class="form-control" type="text" id="telefoneFixoInput" name="telefoneFixoInput" placeholder="(xx)xxxx-xxxx" value="">
+                            <input class="form-control" type="text" id="telefoneFixoInput" name="telefoneFixoInput" placeholder="(xx) xxxx-xxxx" value="">
                         </div>
-                        <div class="ms-3">
+                        <div class="flex-fill ms-3">
                             <label class="form-label" for="telefoneCelularInput">Telefone Celular</label>
-                            <input class="form-control" type="text" id="telefoneCelularInput" name="telefoneCelularInput" placeholder="(xx)xxxxx-xxxx" value="">
+                            <input class="form-control" type="text" id="telefoneCelularInput" name="telefoneCelularInput" placeholder="(xx) xxxxx-xxxx" value="">
                         </div>
-                        <div class="d-flex flex-column justify-content-center ms-3">
+                        <div class="d-flex flex-fill flex-column justify-content-end ms-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tipoPessoaRadio" id="tipoPessoaRadioProfessor" value="professor" checked>
                                 <label class="form-check-label" for="tipoPessoaRadioProfessor">Professor</label>
@@ -181,7 +186,7 @@
                             </div>
                             <div id="divAluno">
                                 <label class="form-label" for="cursoInput">Curso</label>
-                                <input class="form-control" type="text" id="cursoInput"     name="cursoInput" placeholder="Digite seu curso" value="">
+                                <input class="form-control" type="text" id="cursoInput" name="cursoInput" placeholder="Digite seu curso" value="">
                             </div>
                         </div>
                         <div class="ms-3">
@@ -189,9 +194,11 @@
                             <input class="form-control" type="text" id="matriculaInput" name="matriculaInput" placeholder="Digite sua matricula" value="">
                         </div>
                     </div>
-                    <div class="d-flex flex-column mt-3" id="divLattes">
-                        <label class="form-label" for="linkLattesInput">Lattes</label>
-                        <input class="form-control" type="text" id="linkLattesInput" name="linkLattesInput" placeholder="Digite aqui o endereço para seu Lattes" value="">
+                    <div class="d-flex flex-column mt-3">
+                        <div id="divLattes">
+                            <label class="form-label" for="linkLattesInput">Lattes</label>
+                            <input class="form-control" type="text" id="linkLattesInput" name="linkLattesInput" placeholder="Digite aqui o endereço para seu Lattes" value="">
+                        </div>
                     </div>
                     <div class="d-flex justify-content-center mt-3">
                         <button class="btn btn-secondary" type="submit">Enviar</button>
