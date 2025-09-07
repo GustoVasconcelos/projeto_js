@@ -78,13 +78,13 @@
                     <div class="d-flex flex-row mt-3">
                         <div class="flex-fill">
                             <label class="form-label" for="telefoneFixoInput">Telefone Fixo</label>
-                            <input class="form-control" type="text" id="telefoneFixoInput" name="telefoneFixoInput" placeholder="(xx) xxxx-xxxx" value="1832222222" required>
+                            <input class="form-control" type="text" id="telefoneFixoInput" name="telefoneFixoInput" placeholder="(xx) xxxx-xxxx" value="(18) 3222-2222" required>
                             <div class="invalid-feedback" id="erroTelFixo"></div>
                             <div class="valid-feedback">Telefone válido!</div>
                         </div>
                         <div class="flex-fill ms-3">
                             <label class="form-label" for="telefoneCelularInput">Telefone Celular</label>
-                            <input class="form-control" type="text" id="telefoneCelularInput" name="telefoneCelularInput" placeholder="(xx) xxxxx-xxxx" value="18991919191" required>
+                            <input class="form-control" type="text" id="telefoneCelularInput" name="telefoneCelularInput" placeholder="(xx) xxxxx-xxxx" value="(18) 99191-9191" required>
                             <div class="invalid-feedback" id="erroTelCelular"></div>
                             <div class="valid-feedback">Celular válido!</div>
                         </div>
@@ -103,22 +103,30 @@
                         <div class="flex-fill">
                             <div id="divProfessor">
                                 <label class="form-label" for="areaAtuacaoInput">Área</label>
-                                <input class="form-control" type="text" id="areaAtuacaoInput" name="areaAtuacaoInput" placeholder="Digite sua área de atuação" value="">
+                                <input class="form-control" type="text" id="areaAtuacaoInput" name="areaAtuacaoInput" placeholder="Digite sua área de atuação" value="Ciencias Exatas">
+                                <div class="invalid-feedback" id="erroAreaAtuacao"></div>
+                                <div class="valid-feedback">Área de Atuação válida!</div>
                             </div>
                             <div id="divAluno">
                                 <label class="form-label" for="cursoInput">Curso</label>
-                                <input class="form-control" type="text" id="cursoInput" name="cursoInput" placeholder="Digite seu curso" value="">
+                                <input class="form-control" type="text" id="cursoInput" name="cursoInput" placeholder="Digite seu curso" value="Análise e Desenvolvimento em Sistemas">
+                                <div class="invalid-feedback" id="erroCurso"></div>
+                                <div class="valid-feedback">Curso válido!</div>
                             </div>
                         </div>
                         <div class="ms-3">
                             <label class="form-label" for="matriculaInput">Matricula</label>
-                            <input class="form-control" type="text" id="matriculaInput" name="matriculaInput" placeholder="Digite sua matricula" value="" required>
+                            <input class="form-control" type="text" id="matriculaInput" name="matriculaInput" placeholder="Digite sua matricula" value="12345" required>
+                            <div class="invalid-feedback" id="erroMatricula"></div>
+                            <div class="valid-feedback">Matricula válida!</div>
                         </div>
                     </div>
                     <div class="d-flex flex-column mt-3">
                         <div id="divLattes">
                             <label class="form-label" for="linkLattesInput">Lattes</label>
-                            <input class="form-control" type="text" id="linkLattesInput" name="linkLattesInput" placeholder="Digite aqui o endereço para seu Lattes" value="">
+                            <input class="form-control" type="text" id="linkLattesInput" name="linkLattesInput" placeholder="Digite aqui o endereço para seu Lattes" value="http://lattes.cnpq.br/5081368592540688">
+                            <div class="invalid-feedback" id="erroLattes"></div>
+                            <div class="valid-feedback">Link válido!</div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-3">

@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             divProfessor.style.display = "block";
             divLattes.style.display = "block";
             divAluno.style.display = "none";
-            matriculaInput.value = "";
+            matriculaInput.value = "12345";
             matriculaInput.maxLength = 5;
             linkLattesInput.setAttribute("required", true);
             areaAtuacaoInput.setAttribute("required", true);
@@ -87,20 +87,104 @@ document.addEventListener("DOMContentLoaded", function () {
             divProfessor.style.display = "none";
             divLattes.style.display = "none";
             divAluno.style.display = "block";
-            matriculaInput.value = "";
+            matriculaInput.value = "1234567890";
             matriculaInput.maxLength = 10;
             linkLattesInput.setAttribute("required", false);
             areaAtuacaoInput.setAttribute("required", false);
             cursoInput.setAttribute("required", true);
         }
+        matriculaInput.classList.remove('is-invalid');
+        matriculaInput.classList.remove('is-valid');
     }
 
-    // Adiciona um "ouvinte de evento" para o clique nos botões de rádio
+    //adiciona um EventListener para o clique nos botões de rádio
     tipoPessoaRadioProfessor.addEventListener("change", exibirInputCorreto);
     tipoPessoaRadioAluno.addEventListener("change", exibirInputCorreto);
 
-    // EventListener do event reset do formulario
+    //EventListener do event reset do formulario
     formCadastro.addEventListener("reset", exibirInputCorreto);
+
+    //validacao dos campos de acordo com o perfil escolido
+    //validacao do campo curso
+    const feedbackCurso = document.getElementById("erroCurso");
+    cursoInput.addEventListener('blur', () => {
+        if (tipoPessoaRadioAluno.checked){
+            const valor = cursoInput.value.trim();
+
+            if (valor === "") {
+                cursoInput.classList.remove("is-valid");
+                cursoInput.classList.add("is-invalid");
+                feedbackCurso.textContent = "O campo curso é obrigatório.";
+                return;
+            } else {
+                cursoInput.classList.add("is-valid");
+                cursoInput.classList.remove("is-invalid");
+            }
+        }
+    })
+
+    //validacao do campo area de atuacao
+    const feedbackAreaAtuacao = document.getElementById("erroAreaAtuacao");
+    areaAtuacaoInput.addEventListener('blur', () => {
+        if (tipoPessoaRadioProfessor.checked){
+            const valor = areaAtuacaoInput.value.trim();
+
+            if (valor === "") {
+                areaAtuacaoInput.classList.remove("is-valid");
+                areaAtuacaoInput.classList.add("is-invalid");
+                feedbackAreaAtuacao.textContent = "O campo área de atuação é obrigatório.";
+                return;
+            } else {
+                areaAtuacaoInput.classList.add("is-valid");
+                areaAtuacaoInput.classList.remove("is-invalid");
+            }
+        }
+    })
+
+    //validacao do campo area de atuacao
+    const feedbackLattes = document.getElementById("erroLattes");
+    linkLattesInput.addEventListener('blur', () => {
+        if (tipoPessoaRadioProfessor.checked){
+            const valor = linkLattesInput.value.trim();
+
+            if (valor === "") {
+                linkLattesInput.classList.remove("is-valid");
+                linkLattesInput.classList.add("is-invalid");
+                feedbackLattes.textContent = "O campo é obrigatório.";
+                return;
+            } else {
+                linkLattesInput.classList.add("is-valid");
+                linkLattesInput.classList.remove("is-invalid");
+            }
+        }
+    })
+
+    //validacao do campo matricula
+    const feedbackMatricula = document.getElementById("erroMatricula");
+    matriculaInput.addEventListener('blur', () => {
+        const valor = matriculaInput.value.trim();
+
+        if (valor === "") {
+            matriculaInput.classList.remove("is-valid");
+            matriculaInput.classList.add("is-invalid");
+            feedbackMatricula.textContent = "O campo matricula é obrigatório.";
+            return;
+        } 
+        if (tipoPessoaRadioProfessor.checked && valor.length  != 5) {
+            matriculaInput.classList.remove("is-valid");
+            matriculaInput.classList.add("is-invalid");
+            feedbackMatricula.textContent = "O campo precisa de 5 digitos.";
+            return;
+        } else if (tipoPessoaRadioAluno.checked && valor.length != 10) {
+            matriculaInput.classList.remove("is-valid");
+            matriculaInput.classList.add("is-invalid");
+            feedbackMatricula.textContent = "O campo precisa de 10 digitos.";
+            return;
+        } else {
+            matriculaInput.classList.add("is-valid");
+            matriculaInput.classList.remove("is-invalid");
+        }
+    })
 
     //mascaras telefones
     const telefoneFixo = document.getElementById("telefoneFixoInput");
@@ -117,8 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mascaraTelFixo = IMask(telefoneFixo, mascaraTeleFoneFixo);
     const mascaraTelCelular = IMask(telefoneCelular, mascaraTeleFoneCelular);
 
-    // validações dos campos //
-
+    //validações dos campos genericos
     //validação do telefone fixo
     const feedbackTelFixo = document.getElementById("erroTelFixo");
 
