@@ -3,6 +3,7 @@ function Pessoa() {
     let sobrenome;
     let email;
     let data_nascimento;
+    let matricula;
 
     this.setNome = function (vNome) {
         this.nome = vNome;
@@ -36,6 +37,14 @@ function Pessoa() {
         return this.data_nascimento;
     };
 
+    this.setMatricula = function (vMatricula) {
+        this.matricula = vMatricula;
+    };
+
+    this.getMatricula = function () {
+        return this.matricula;
+    };
+
     this.nomeCompleto = function () {
         return this.nome + " " + this.sobrenome;
     };
@@ -45,6 +54,13 @@ function Aluno() {
     Pessoa.call(this);
 
     let curso;
+
+    this.setCurso = function(vCurso) {
+        this.curso = vCurso;
+    };
+    this.getCurso = function() {
+        return this.curso;
+    };
 }
 
 function Professor() {
@@ -52,6 +68,19 @@ function Professor() {
 
     let area_atuacao;
     let link_lattes;
+
+    this.setAreaAtuacao = function(vArea) {
+        this.area_atuacao = vArea;
+    };
+    this.getAreaAtuacao = function() {
+        return this.area_atuacao;
+    };
+    this.setLinkLattes = function(vLink) {
+        this.link_lattes = vLink;
+    };
+    this.getLinkLattes = function() {
+        return this.link_lattes;
+    };
 }
 
 //Funções do JavaScript
@@ -71,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const cursoInput = document.getElementById("cursoInput");
     const linkLattesInput = document.getElementById("linkLattesInput");
     const formCadastro = document.getElementById("formCadastro");
+    const resultadosDiv = document.getElementById("resultadoDiv");
+    const areaResultados = document.getElementById("conteudoResultados");
 
     //esconde e exibe o div correto conforme o perfil selecionado (aluno / professor)
     function exibirInputCorreto() {
@@ -102,7 +133,96 @@ document.addEventListener("DOMContentLoaded", function () {
     tipoPessoaRadioAluno.addEventListener("change", exibirInputCorreto);
 
     //EventListener do event reset do formulario
-    formCadastro.addEventListener("reset", exibirInputCorreto);
+    formCadastro.addEventListener("reset", (event) => {
+        event.preventDefault(); 
+        location.reload(); 
+    });
+
+    //validacao do formulario, evitando que seja enviado sem que os campos sejam validados
+    formCadastro.addEventListener("submit", (event) => {
+        //impede o envio padrão do formulário
+        event.preventDefault();
+
+        //cria uma lista de todos os campos que precisam de validação
+        const camposParaValidar = formCadastro.querySelectorAll('[required]');
+
+        //dispara o evento 'blur' em cada campo para forçar a validação
+        camposParaValidar.forEach(campo => {
+            campo.dispatchEvent(new Event('blur'));
+        });
+
+        //verifica se algum campo no formulário está com a classe .is-invalid
+        const primeiroCampoInvalido = formCadastro.querySelector('.is-invalid');
+
+        if (primeiroCampoInvalido) {
+            //se houver um campo inválido, foca nele para o usuário corrigir
+            primeiroCampoInvalido.focus();
+            //mensagem no console apenas para testes
+            console.log('Formulário inválido. Por favor, corrija os campos marcados.');
+        } else {
+            //se tudo estiver certo, pode enviar o formulário
+            //mensagem no console apenas para testes
+            //console.log('Formulário válido! Enviando...');
+            //permite o envio do formulario
+            //formCadastro.submit();
+            //mensagem no alert apenas para testes
+            //alert('Formulário enviado com sucesso!');
+
+            //pega o nome e divide em nome e sobrenome para usar na classe
+            const partesNome = nomeCompletoInput.value.trim().split(' ');
+            const primeiroNome = partesNome.shift();
+            const sobrenome = partesNome.join(' ');
+
+            //atribuicao das variaveis que vao ser usadas
+            let novaPessoa;
+            let htmlResultado;
+
+            //se for do tipo aluno
+            if (tipoPessoaRadioAluno.checked) {
+                novaPessoa = new Aluno();
+                novaPessoa.setNome(primeiroNome);
+                novaPessoa.setSobrenome(sobrenome);
+                novaPessoa.setEmail(emailInput.value);
+                let dataNascimento = dataNascimentoInput.value.split('-').reverse().join('/');
+                novaPessoa.setDataNascimento(dataNascimento);
+                novaPessoa.setCurso(cursoInput.value);
+                novaPessoa.setMatricula(matriculaInput.value);
+                htmlResultado = `
+                        <p><strong>Perfil:</strong> Aluno</p>
+                        <p><strong>Nome Completo:</strong> ${novaPessoa.nomeCompleto()}</p>
+                        <p><strong>Email:</strong> ${novaPessoa.getEmail()}</p>
+                        <p><strong>Data de Nascimento:</strong> ${novaPessoa.getDataNascimento()}</p>
+                        <p><strong>Curso:</strong> ${novaPessoa.getCurso()}</p>
+                        <p><strong>Matricula:</strong> ${novaPessoa.getMatricula()}</p>
+                    `;
+            }
+            
+            //se for do tipo professor
+            if (tipoPessoaRadioProfessor.checked) {
+                novaPessoa = new Professor();
+                novaPessoa.setNome(primeiroNome);
+                novaPessoa.setSobrenome(sobrenome);
+                novaPessoa.setEmail(emailInput.value);
+                let dataNascimento = dataNascimentoInput.value.split('-').reverse().join('/');
+                novaPessoa.setDataNascimento(dataNascimento);
+                novaPessoa.setAreaAtuacao(areaAtuacaoInput.value);
+                novaPessoa.setMatricula(matriculaInput.value);
+                novaPessoa.setLinkLattes(linkLattesInput.value);
+                htmlResultado = `
+                        <p><strong>Perfil:</strong> Professor</p>
+                        <p><strong>Nome Completo:</strong> ${novaPessoa.nomeCompleto()}</p>
+                        <p><strong>Email:</strong> ${novaPessoa.getEmail()}</p>
+                        <p><strong>Data de Nascimento:</strong> ${novaPessoa.getDataNascimento()}</p>
+                        <p><strong>Area de Atuacao:</strong> ${novaPessoa.getAreaAtuacao()}</p>
+                        <p><strong>Matricula:</strong> ${novaPessoa.getMatricula()}</p>
+                        <p><strong>Link Lattes:</strong> ${novaPessoa.getLinkLattes()}</p>
+                    `;
+            }
+            
+            conteudoResultados.innerHTML = htmlResultado;
+            resultadosDiv.classList.remove('d-none');
+        }
+    });
 
     //validacao dos campos de acordo com o perfil escolido
     //validacao do campo curso
@@ -346,6 +466,7 @@ document.addEventListener("DOMContentLoaded", function () {
             //data válida
             dataNascimentoInput.classList.remove("is-invalid");
             dataNascimentoInput.classList.add("is-valid");
+            
         }
     });
 
