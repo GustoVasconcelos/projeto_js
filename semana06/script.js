@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
         '7', '8', '9', '*',
         '4', '5', '6', '-',
         '1', '2', '3', '+',
-        '', '0', '.', '='
+        '🖩', '0', '.', '='
     ];
 
     function evalWithPercentage(s) {
@@ -64,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function() {
             btn.classList.add('btn-secondary');
         } else if (botao === '=') {
             btn.classList.add('btn-success');
+        } else if (botao === '🖩') {
+            btn.classList.add('btn-success');
+            btn.classList.add('disabled');
         } else if (botao === 'AC') {
             btn.classList.add('btn-success');
         } else {
